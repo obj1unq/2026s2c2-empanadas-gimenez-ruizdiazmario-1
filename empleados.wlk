@@ -13,6 +13,7 @@ object galvan {
   }
 
   method dinero() = dinero
+
   method deuda() = deuda
 
   method gastar(cuanto) {
@@ -52,7 +53,7 @@ object baigorria {
   }
   method totalCobrado() {
     return totalCobrado
-} 
+  } 
 }
 
 object gimenez {
