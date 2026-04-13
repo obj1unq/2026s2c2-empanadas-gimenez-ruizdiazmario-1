@@ -19,7 +19,7 @@ object galvan {
     return dinero
   }
   
-  method deuda() = {
+  method deuda() {
     return deuda
   }
 
@@ -72,11 +72,26 @@ object gimenez {
     return fondo
   }
 
-  method pagarSueldo(empleado) {
-  fondo = fondo - empleado.sueldo()
-  empleado.cobrar()
+  method fondos(cantidad) {
+    fondo = cantidad
   }
-}
+  method puedePagar(empleado) {
+    return self.fondo() >= empleado.sueldo()
+  }
 
+  method validarFondos(empleado) {
+    if (not(self.puedePagar(empleado))){
+        self.error("No hay fondos suficientes para pagar"+ empleado.sueldo() + "a"+ empleado+".") 
+    }
+  }
 
-
+  method pagarA(empleado) {
+    fondo = self.fondo() - empleado.sueldo()
+    empleado.cobrar()
+  }
+ 
+  method pagarSueldo(empleado) {
+    self.validarFondos(empleado)
+    self.pagarA(empleado)
+    }
+  }
